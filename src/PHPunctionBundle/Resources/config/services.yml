@@ -1,0 +1,4 @@
+services:
+#    ph_punction.example:
+#        class: PHPunctionBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

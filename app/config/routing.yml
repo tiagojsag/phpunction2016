@@ -1,0 +1,3 @@
+ph_punction:
+    resource: "@PHPunctionBundle/Resources/config/routing.yml"
+    prefix:   /
