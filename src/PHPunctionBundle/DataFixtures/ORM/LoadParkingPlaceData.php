@@ -34,10 +34,10 @@ class LoadParkingPlaceData implements FixtureInterface, ContainerAwareInterface
                 $result = $this->container->get('bazinga_geocoder.geocoder')->reverse($parkingPlace->getLatitude(), $parkingPlace->getLongitude());
                 $address = $result->first();
 
-                $parkingPlace->setAddressOne($address->getStreetName() ? : "Infinite Loop");
-                $parkingPlace->setCity($address->getLocality() ? : "Cupertino");
-                $parkingPlace->setZipCode($address->getPostalCode() ? : "95014");
-                $parkingPlace->setCountry($address->getCountryCode() ? : "USA");
+                $parkingPlace->setAddressOne($address->getStreetName());
+                $parkingPlace->setCity($address->getLocality());
+                $parkingPlace->setZipCode($address->getPostalCode());
+                $parkingPlace->setCountry($address->getCountryCode());
             } catch (\Exception $e) {
                 $parkingPlace->setAddressOne("Infinite Loop");
                 $parkingPlace->setCity("Cupertino");

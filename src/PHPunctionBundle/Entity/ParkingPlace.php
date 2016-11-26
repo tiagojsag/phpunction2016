@@ -2,6 +2,7 @@
 
 namespace PHPunctionBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,6 +21,11 @@ class ParkingPlace
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="TimeSlot", mappedBy="parkingPlace")
+     */
+    private $timeSlots;
 
     /**
      * @var string
@@ -52,7 +58,7 @@ class ParkingPlace
     /**
      * @var string
      *
-     * @ORM\Column(name="address_one", type="string", length=255)
+     * @ORM\Column(name="address_one", type="string", length=255, nullable=true)
      */
     private $addressOne;
 
@@ -66,24 +72,28 @@ class ParkingPlace
     /**
      * @var string
      *
-     * @ORM\Column(name="zip_code", type="string", length=255)
+     * @ORM\Column(name="zip_code", type="string", length=255, nullable=true)
      */
     private $zipCode;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=255)
+     * @ORM\Column(name="city", type="string", length=255, nullable=true)
      */
     private $city;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="country", type="string", length=255)
+     * @ORM\Column(name="country", type="string", length=255, nullable=true)
      */
     private $country;
 
+    public function __construct()
+    {
+        $this->timeSlots = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -309,6 +319,22 @@ class ParkingPlace
     public function getCity()
     {
         return $this->city;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTimeSlots()
+    {
+        return $this->timeSlots;
+    }
+
+    /**
+     * @param mixed $timeSlots
+     */
+    public function setTimeSlots($timeSlots)
+    {
+        $this->timeSlots = $timeSlots;
     }
 }
 

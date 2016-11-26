@@ -22,6 +22,12 @@ class TimeSlot
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="ParkingPlace", inversedBy="timeSlots")
+     * @ORM\JoinColumn(name="parking_place_id", referencedColumnName="id")
+     */
+    private $parkingPlace;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="start_time", type="datetime")
@@ -154,6 +160,22 @@ class TimeSlot
     public function getPriceHour()
     {
         return $this->priceHour;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getParkingPlace()
+    {
+        return $this->parkingPlace;
+    }
+
+    /**
+     * @param mixed $parkingPlace
+     */
+    public function setParkingPlace($parkingPlace)
+    {
+        $this->parkingPlace = $parkingPlace;
     }
 }
 
